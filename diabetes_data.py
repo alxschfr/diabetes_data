@@ -1,11 +1,12 @@
-import pandas as pd
 import csv
+
+import pandas as pd
 import matplotlib.pyplot as plt
 
 #initialize variables (list for storing concatenated dates, subset selection filter based on relevant column indices,
 # datetime_format of concatenated Datum_ID
 timestamp_list = []
-mysugr_df_columnfilter =[0, 4, 6, 8, 9, 12, 13]
+mysugr_df_columnfilter = [0, 4, 6, 8, 9, 12, 13]
 datetime_format = '%d.%m.%Y %H:%M:%S'
 
 #open MySugr export csv and append concatenated timestamp to separate list 'timestamp_list' to create unique timestamps
@@ -38,7 +39,7 @@ mysugr_df['Mahlzeitkohlenhydrate (Broteinheiten, Faktor 12)'] = mysugr_df['Mahlz
 
 #convert concatenated date and time to pandas datetime64 object and initialize DateTimeIndex based on 'Datum_ID' and
 # print index type to check if it worked
-mysugr_df['Datum_ID']= pd.to_datetime(mysugr_df['Datum_ID'], format=datetime_format)
+mysugr_df['Datum_ID'] = pd.to_datetime(mysugr_df['Datum_ID'], format=datetime_format)
 mysugr_df = mysugr_df.set_index(mysugr_df['Datum_ID'])
 print(type(mysugr_df.info()))
 
