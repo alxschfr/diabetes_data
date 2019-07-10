@@ -47,10 +47,3 @@ print(type(mysugr_df.info()))
 print(mysugr_df.loc['2019-07-01':'2019-07-10'].describe().to_string())
 mysugr_df.loc['2019-07-01':'2019-07-10'].plot(x='Datum_ID', y='Blutzuckermessung (mg/dL)')
 plt.show()
-
-
-
-
-
-
-
