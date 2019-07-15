@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
-'''python3 program to read the export csv-file of the diabetes-management application mySugr (https://mysugr.com/)
-as pandas0.24.2.DataFrame object to enable statistical time-based analysis.'''
+# -*- coding: utf-8 -*-
+
+"""
+python3 program to read the export csv-file of the diabetes-management application mySugr (https://mysugr.com/)
+as pandas0.24.2.DataFrame object to enable statistical date-based analysis.
+"""
 
 import csv
 
