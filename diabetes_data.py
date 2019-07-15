@@ -1,7 +1,12 @@
+#!/usr/bin/env python3
+'''python3 program to read the export csv-file of the diabetes-management application mySugr (https://mysugr.com/)
+as pandas0.24.2.DataFrame object to enable statistical time-based analysis.'''
+
 import csv
 
 import pandas as pd
 import matplotlib.pyplot as plt
+#import seaborn as sns
 
 #initialize variables (list for storing concatenated dates, subset selection filter based on relevant column indices,
 # datetime_format of concatenated Datum_ID
@@ -46,5 +51,13 @@ print(type(mysugr_df.info()))
 #select subsection based on date, print general descriptive statistic for every column and a plot that maps blood
 # glucose measurements to dates
 print(mysugr_df.loc['2019-07-01':'2019-07-10'].describe().to_string())
-mysugr_df.loc['2019-07-01':'2019-07-10'].plot(x='Datum_ID', y='Blutzuckermessung (mg/dL)')
+
+#interpolate missing values for blood sugar test, because of entries with only BE or insulin values
+mysugr_df['Blutzuckermessung (mg/dL)'] = mysugr_df['Blutzuckermessung (mg/dL)'].interpolate(method='linear', limit_direction='forward')
+
+#plot lineplot of dataframe in selected date range
+mysugr_df.loc['2019-07-01':'2019-07-10'].plot.line(x='Datum_ID', y='Blutzuckermessung (mg/dL)', linestyle='-')
 plt.show()
+
+#Filter rows with NaN-Values for specific column
+#mysugr_df[mysugr_df['Blutzuckermessung (mg/dL)'].notnull()]
